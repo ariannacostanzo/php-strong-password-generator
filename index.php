@@ -6,12 +6,17 @@ include __DIR__ . '/includes/functions/functions.php';
 //arrays
 include __DIR__ . '/includes/data/data.php';
 
+//lunghezza
 $length = $_GET['length'] ?? '';
+//ripetizione caratteri
+$repeat = $_GET['repetition'] ?? 'yes';
+var_dump($repeat);
+var_dump($length);
 
 //quando ho inviato il form
 if ($length) {
     //creo la password
-    $password = create_random_password($length, $all_signs);
+    $password = create_random_password($length, $numbers, $repeat);
 
     session_start();
     $_SESSION['password'] = $password;
@@ -19,6 +24,9 @@ if ($length) {
     //mi sposto nella pagina di successo
     header('Location: success.php');
 }
+
+
+
 
 ?>
 
@@ -46,6 +54,15 @@ if ($length) {
             <div class="d-flex align-items-center justify-content-between my-4">
                 <label for="length">Lunghezza password:</label>
                 <input type="number" class="form-input" id="length" name="length" value="<?= $length ?>">
+            </div>
+            <div class="d-flex align-items-center justify-content-between my-4">
+                <label>Consenti ripetizioni di uno o più caratteri: </label>
+                <div class="d-flex align-items-center gap-2">
+                    <label for="rep-yes">Si</label>
+                    <input type="radio" value="yes" id="rep-yes" name="repetition" <?= $repeat === 'yes' ? 'checked' : '' ?>>
+                    <label for="rep-no">No</label>
+                    <input type="radio" value="no" id="rep-no" name="repetition" <?= $repeat === 'no' ? 'checked' : '' ?>>
+                </div>
             </div>
             
             <div class="buttons-container">
