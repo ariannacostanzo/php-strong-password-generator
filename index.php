@@ -1,40 +1,24 @@
 <?php 
 
-//funzione
+//funzioni
+include __DIR__ . '/includes/functions/functions.php';
 
-function create_random_password($amount, $array) {
-    $generated_password = '';
-
-    for ($i = 0; $i <= $amount; $i++) {
-        $element = get_random_number($array);
-        $generated_password .= $array[$element];
-    }
-    return $generated_password;
-}
-
-function get_random_number($array) {
-    return  rand(0, count($array) - 1);
-}
-
-//arrays divisi
-$numbers = ['1','2','3','4','5','6','7','8','9','0'];
-$letters_uppercase = range('A', 'Z');
-$letters_lowercase = range('a', 'z');
-$symbols = ['!', '.', '?', ',', '@', '#', '$', '%', '^', '&', '*'];
-
-//array che ha tutto
-$all_signs = [];
-$all_signs = array_merge($numbers , $letters_uppercase , $letters_lowercase , $symbols);
+//arrays
+include __DIR__ . '/includes/data/data.php';
 
 $length = $_GET['length'] ?? '';
-$password = '';
-//quando ho inviato il form
 
+//quando ho inviato il form
 if ($length) {
     //creo la password
     $password = create_random_password($length, $all_signs);
-}
 
+    session_start();
+    $_SESSION['password'] = $password;
+
+    //mi sposto nella pagina di successo
+    header('Location: success.php');
+}
 
 ?>
 
@@ -54,14 +38,7 @@ if ($length) {
         <h1>Strong Password Generator</h1>
         <h3>Genera una password sicura</h3>
 
-        <!-- alert -->
-        <?php if ($password): ?>
-            <div class="alert-container">
-                <div class="alert alert-success px-3" role="alert">
-                    <?= $password?>
-                </div>
-            </div>
-        <?php endif ?>
+        
 
         <!-- form -->
         <form class="password-container" action="" method="GET">
