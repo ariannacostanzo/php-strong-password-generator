@@ -4,12 +4,12 @@
 
 function create_random_password($amount, $array) {
     $generated_password = '';
+
     for ($i = 0; $i <= $amount; $i++) {
         $element = get_random_number($array);
-        var_dump($array[$element]);
         $generated_password .= $array[$element];
     }
-    var_dump($generated_password);
+    return $generated_password;
 }
 
 function get_random_number($array) {
@@ -27,13 +27,14 @@ $all_signs = [];
 $all_signs = array_merge($numbers , $letters_uppercase , $letters_lowercase , $symbols);
 
 $length = $_GET['length'] ?? '';
-
+$password = '';
 //quando ho inviato il form
+
 if ($length) {
-    create_random_password($length, $all_signs);
+    //creo la password
+    $password = create_random_password($length, $all_signs);
 }
 
-//creo la password
 
 ?>
 
@@ -53,10 +54,21 @@ if ($length) {
         <h1>Strong Password Generator</h1>
         <h3>Genera una password sicura</h3>
 
+        <!-- alert -->
+        <?php if ($password): ?>
+            <div class="alert-container">
+                <div class="alert alert-success px-3" role="alert">
+                    <?= $password?>
+                </div>
+            </div>
+        <?php endif ?>
+
+        <!-- form -->
         <form class="password-container" action="" method="GET">
+            
             <div class="d-flex align-items-center justify-content-between my-4">
                 <label for="length">Lunghezza password:</label>
-                <input type="number" class="form-input" id="length" name="length">
+                <input type="number" class="form-input" id="length" name="length" value="<?= $length ?>">
             </div>
             
             <div class="buttons-container">

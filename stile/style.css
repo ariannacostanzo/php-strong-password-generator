@@ -17,11 +17,17 @@ h3 {
     box-shadow: 1px 1px 5px grey;
     width: 50%;
     margin: 0 auto;
-    margin-top: 4rem;
+    margin-top: 1rem;
     padding: 1rem 2rem;
 }
 
 .form-input {
     padding: 5px;
     border-radius: 10px;
+}
+
+.alert-container {
+    width: 50%;
+    margin: 0 auto;
+    word-break: break-word;
 }
