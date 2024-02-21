@@ -1,4 +1,13 @@
 <?php 
+
+//funzione
+
+$length = $_GET['length'] ?? '';
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +22,22 @@
     <link rel="stylesheet" href="stile/style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Strong Password Generator</h1>
+        <h3>Genera una password sicura</h3>
+
+        <form class="password-container" action="" method="GET">
+            <div class="d-flex align-items-center justify-content-between my-4">
+                <label for="length">Lunghezza password:</label>
+                <input type="number" class="form-input" id="length" name="length">
+            </div>
+            
+            <div class="buttons-container">
+                <button type="submit" class="btn btn-primary">Invia</button>
+                <button type="button" class="btn btn-secondary">Annulla</button>
+            </div>
+        </form>
+    </div>
+        
 </body>
 </html>

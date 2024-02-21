@@ -1,0 +1,27 @@
+body {
+    background-color: #caedf7;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,
+h3 {
+    margin: 2rem 0;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.password-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 1px 5px grey;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 4rem;
+    padding: 1rem 2rem;
+}
+
+.form-input {
+    padding: 5px;
+    border-radius: 10px;
+}
