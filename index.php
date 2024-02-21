@@ -2,25 +2,38 @@
 
 //funzione
 
+function create_random_password($amount, $array) {
+    $generated_password = '';
+    for ($i = 0; $i <= $amount; $i++) {
+        $element = get_random_number($array);
+        var_dump($array[$element]);
+        $generated_password .= $array[$element];
+    }
+    var_dump($generated_password);
+}
+
+function get_random_number($array) {
+    return  rand(0, count($array) - 1);
+}
+
 //arrays divisi
-$numbers = [1,2,3,4,5,6,7,8,9,0];
+$numbers = ['1','2','3','4','5','6','7','8','9','0'];
 $letters_uppercase = range('A', 'Z');
 $letters_lowercase = range('a', 'z');
 $symbols = ['!', '.', '?', ',', '@', '#', '$', '%', '^', '&', '*'];
 
 //array che ha tutto
 $all_signs = [];
-
 $all_signs = array_merge($numbers , $letters_uppercase , $letters_lowercase , $symbols);
-var_dump($all_signs);
-
-
-
-
-
-
 
 $length = $_GET['length'] ?? '';
+
+//quando ho inviato il form
+if ($length) {
+    create_random_password($length, $all_signs);
+}
+
+//creo la password
 
 ?>
 
